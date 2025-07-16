@@ -6,8 +6,15 @@ import matplotlib.pyplot as plt
 
 # Page settings
 st.set_page_config(page_title="Stress Detector", layout="wide")
+import os
 
-model = joblib.load("mental_stress_detector.pkl")
+model_path = "mental_stress_detector.pkl"
+if os.path.exists(model_path):
+    model = joblib.load(model_path)
+else:
+    st.error("❌ Model file 'mental_stress_detector.pkl' not found. Please upload it.")
+    st.stop()
+
 
 
 # Title
